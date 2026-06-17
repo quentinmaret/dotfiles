@@ -8,7 +8,7 @@
 - [ ] .zprofile
 - [ ] .gitconfig
 - [ ] .gitignore + global one?
-- [ ] .macos
+- [ ] .macos https://macos-defaults.com/
 - [ ] brew.sh
 - [ ] symlink script
 - [ ] .extra for private git credentials linked to ./gitconfig

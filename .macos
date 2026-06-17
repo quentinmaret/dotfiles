@@ -1,0 +1,8 @@
+# General: Computer Name
+sudo scutil --set HostName “quentin-maret”
+sudo scutil --set LocalHostName “quentin-maret”
+
+# Dock: Auto hide and show
+defaults write com.apple.dock autohide -bool true
+# Dock: Remove auto-hiding delay
+defaults write com.apple.dock autohide-delay -float 0
