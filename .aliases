@@ -1,0 +1,25 @@
+# Git
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gb='git branch'
+alias gsw='git switch'
+alias gr='git restore'
+
+alias gaa='git add -A'
+alias gcm='git commit -m'
+alias gd='git diff -w'
+alias gu='git reset --soft HEAD~1'
+alias gl='git log --oneline --graph --decorate'
+
+# Unix
+alias ll='ls -la'
+alias mkdir='mkdir -p'
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# Tools
+alias tree='tree -a --dirsfirst -I .git'
+
+alias d='docker'
+alias dc='docker compose'

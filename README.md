@@ -4,10 +4,10 @@
 
 ## TODO
 
-- [ ] .zshrc
+- [ ] .zshrc + sources ./aliases
 - [ ] .zprofile
 - [ ] .gitconfig
-- [ ] .gitignore
+- [ ] .gitignore + global one?
 - [ ] .macos
 - [ ] brew.sh
 - [ ] symlink script
