@@ -1,2 +1,15 @@
 .DS_Store
-.idea
+
+# Editor
+.idea/
+.vscode/
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Temporary
+__pycache__/
+*.pyc
