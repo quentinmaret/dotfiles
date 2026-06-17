@@ -21,5 +21,10 @@ alias ...='cd ../..'
 # Tools
 alias tree='tree -a --dirsfirst -I .git'
 
+alias bu='brew update; brew upgrade; brew upgrade --cask; brew cleanup'
+
 alias d='docker'
 alias dc='docker compose'
+
+alias localip='ipconfig getifaddr en0'
+alias allips='ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, ""); print }''
