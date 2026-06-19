@@ -1,8 +1,130 @@
-# General: Computer Name
-sudo scutil --set HostName “quentin-maret”
-sudo scutil --set LocalHostName “quentin-maret”
+sudo -v
 
+# ──────────────────────────────────────────────────────────────────────────────
+# General
+# ──────────────────────────────────────────────────────────────────────────────
+# Set computer name
+sudo scutil --set HostName "quentin-maret"
+sudo scutil --set LocalHostName "quentin-maret"
+
+# Save to disk by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+# Disable the “Are you sure you want to open this application?” dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Dock
+# ──────────────────────────────────────────────────────────────────────────────
 # Dock: Auto hide and show
 defaults write com.apple.dock autohide -bool true
+
 # Dock: Remove auto-hiding delay
 defaults write com.apple.dock autohide-delay -float 0
+
+# Dock: Reduce auto-hiding animation time
+defaults write com.apple.dock autohide-time-modifier -float 0.25
+
+# Dock: Minimize animation effect
+defaults write com.apple.dock mineffect -string scale
+
+# Dock: Minimize windows into their application’s icon
+defaults write com.apple.dock minimize-to-application -bool true
+
+# Dock: Remove recents
+defaults write com.apple.dock show-recents -bool false
+
+# Dock: Dock icon size
+defaults write com.apple.dock tilesize -int 50
+
+# Hot Corner: Bottom right is sleep
+defaults write com.apple.dock wvous-br-corner -int 10
+defaults write com.apple.dock wvous-br-modifier -int 0
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Finder
+# ──────────────────────────────────────────────────────────────────────────────
+# Finder: New window shows downloads
+defaults write com.apple.finder NewWindowTarget -string "PfLo"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Downloads/"
+
+# Finder: Remove desktop icons for hard drives, servers, and removable media
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
+
+# Finder: Show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Finder: Remove changing filename extension warning
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Finder: Show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Finder: Search current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Finder: Hide item info near icons
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo false" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo false" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo false" ~/Library/Preferences/com.apple.finder.plist
+
+# Finder: Enable snap-to-grid for icons on the desktop and in other icon views
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+
+# Finder: Reduce icon text size
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:textSize 10" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:textSize 10" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:textSize 10" ~/Library/Preferences/com.apple.finder.plist
+
+# Finder: Show the ~/Library folder
+chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+
+# Finder: Avoid creating .DS_Store files on network or USB volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Screen
+# ──────────────────────────────────────────────────────────────────────────────
+# Screen: Sleep the display after 5 minutes
+sudo pmset -a displaysleep 5
+
+# Screen: Require password 5 minutes after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 300
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Trackpad
+# ──────────────────────────────────────────────────────────────────────────────
+# Trackpad: Swipe left or right with two fingers
+defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool true
+
+# Trackpad: Tap to click
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Screenshots
+# ──────────────────────────────────────────────────────────────────────────────
+# Screenshots: Remove date in filename
+defaults write com.apple.screencapture include-date -bool false
+
+# Screenshots: Save to downloads
+defaults write com.apple.screencapture location -string ~/Downloads
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Kill
+# ──────────────────────────────────────────────────────────────────────────────
+
+for app in "Dock" "Finder" "SystemUIServer" "screencaptureui"; do
+	killall "${app}" &> /dev/null
+done
