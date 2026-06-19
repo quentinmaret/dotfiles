@@ -1,7 +1,7 @@
 DOTFILES := $(HOME)/dotfiles
 export PATH := /opt/homebrew/bin:$(PATH)
 
-.PHONY: all link macos brew apps packages update r
+.PHONY: all link macos brew apps packages update r vscode
 
 all: macos brew apps packages link
 
@@ -47,6 +47,7 @@ apps:
 
 packages:
 	@echo "Downloading packages..."
+	brew install git
 	brew install tree
 	brew install uv
 	brew install go
@@ -56,6 +57,22 @@ r:
 	@echo "Downloading R packages..."
 	brew install r
 	Rscript -e 'install.packages(c("tidyverse", "estimatr", "modelsummary"), repos = "https://cloud.r-project.org")'
+
+vscode:
+	@echo "Downloading VS Code extensions..."
+	code --install-extension github.github-vscode-theme
+	code --install-extension ms-python.python
+	code --install-extension ms-python.vscode-pylance
+	code --install-extension ms-python.debugpy
+	code --install-extension ms-python.vscode-python-envs
+	code --install-extension ms-toolsai.jupyter
+	code --install-extension ms-toolsai.jupyter-keymap
+	code --install-extension ms-toolsai.jupyter-renderers
+	code --install-extension ms-toolsai.vscode-jupyter-cell-tags
+	code --install-extension ms-toolsai.vscode-jupyter-slideshow
+	code --install-extension ms-vscode-remote.remote-ssh
+	code --install-extension ms-vscode-remote.remote-ssh-edit
+	code --install-extension mechatroner.rainbow-csv
 
 update:
 	brew update
