@@ -22,7 +22,7 @@ alias ...='cd ../..'
 # Tools
 alias tree='tree -a --dirsfirst -I .git'
 
-alias bu='brew update; brew upgrade; brew upgrade --cask; brew cleanup'
+alias bu='brew update; brew upgrade; brew cleanup'
 
 alias d='docker'
 alias dc='docker compose'
