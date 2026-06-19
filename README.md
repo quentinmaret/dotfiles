@@ -14,5 +14,6 @@
 - [X] 1Password ssh config? .ssh/config ``git config --global gpg.ssh.allowedSignersFile ~/.config/git/allowed_signers``?
   - maybe .gitallowedsigners file? or organize all git stuff in dotfiles/git/allowed_signers
 - [ ] .claude / general AGENT.md symlink stuff?
-- [ ] R packages for Positron from RStudio
+- [X] R packages for Positron from RStudio
 - [ ] Script to set same keybindings for all apps
+- [ ] Change pycharm default dir with PyCharm → Settings → Appearance & Behavior → System Settings to: ~/Library/Application Support/PyCharm

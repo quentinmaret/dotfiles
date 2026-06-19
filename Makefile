@@ -1,7 +1,7 @@
 DOTFILES := $(HOME)/dotfiles
 export PATH := /opt/homebrew/bin:$(PATH)
 
-.PHONY: all link macos brew apps packages update
+.PHONY: all link macos brew apps packages update r
 
 all: macos brew apps packages link
 
@@ -32,13 +32,15 @@ apps:
 	brew install --cask 1password
 	brew install --cask arc
 	brew install --cask chatgpt
+	brew install --cask codex-app
 	brew install --cask claude
+	brew install --cask claude-code
 	brew install --cask logi-options-plus
 	brew install --cask visual-studio-code
 	brew install --cask jetbrains-toolbox
 	brew install --cask warp
 	brew install --cask docker
-
+	brew install --cask tailscale
 	brew install mas
 	mas install 441258766   # Magnet
 	mas install 1452453066  # Hidden Bar
@@ -46,6 +48,14 @@ apps:
 packages:
 	@echo "Downloading packages..."
 	brew install tree
+	brew install uv
+	brew install go
+	brew install grpc
+
+r:
+	@echo "Downloading R packages..."
+	brew install r
+	Rscript -e 'install.packages(c("tidyverse", "estimatr", "modelsummary"), repos = "https://cloud.r-project.org")'
 
 update:
 	brew update
