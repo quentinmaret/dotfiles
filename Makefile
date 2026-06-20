@@ -16,6 +16,8 @@ link:
 	ln -vsf {$(DOTFILES),$(HOME)}/.ssh/config
 	ln -vsf {$(DOTFILES),$(HOME)}/.ssh/allowed_signers
 	chmod 600 ~/.ssh/allowed_signers
+	mkdir -p $(HOME)/.config
+	ln -vsf {$(DOTFILES),$(HOME)}/.config/starship.toml
 
 macos:
 	@echo "Setting macos preferences..."
@@ -47,6 +49,7 @@ apps:
 
 packages:
 	@echo "Downloading packages..."
+	brew install starship
 	brew install git
 	brew install tree
 	brew install uv

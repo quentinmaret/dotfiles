@@ -15,5 +15,5 @@
   - maybe .gitallowedsigners file? or organize all git stuff in dotfiles/git/allowed_signers
 - [X] R packages for Positron from RStudio
 - [X] VS Code, Warp, Jet Brains synced with github acc
-- [ ] Starship
+- [ ] Starship for Python, R, Go, Docker etc.
 - [ ] .claude / general AGENT.md symlink stuff?
