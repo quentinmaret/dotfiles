@@ -1,48 +1,82 @@
 format = """
-$username\
-$hostname \
-$directory \
-$git_branch \
-$git_status \
+$username:\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
 $git_metrics\
+$python\
+$c\
+$rlang\
+$golang\
+$docker_context\
 $line_break\
 $character"""
 
 [username]
-style_user = 'white'
-style_root = 'white'
-format = '[$user]($style)'
+format = "[$user]($style)"
+style_user = "white"
+style_root = "white"
 disabled = false
 show_always = true
 
 [hostname]
+format = "[$hostname](white) "
 ssh_only = false
-format = '@[$hostname](white)'
 
 [directory]
-style = "#77bdfb"
 format = "[$path]($style)"
+style = "#77bdfb"
 truncation_length = 3
-truncate_to_repo = false
 truncation_symbol = "../"
+truncate_to_repo = false
 
 [git_branch]
-format = "[$branch]($style)"
+format = "([ $branch]($style))"
 style = "bright-black"
 
 [git_status]
+format = "([ $conflicted$staged$modified$renamed$deleted$untracked]($style))"
 style = "dimmed #faa356"
-format = '([$conflicted$staged$modified$renamed$deleted]($style))'
-staged = '[$count](dimmed #a2d2fb)'
-modified = '[$count](dimmed black)'
-deleted = '[-$count](dimmed #fa7970)'
+staged = "[$count](dimmed #a2d2fb)"
+modified = "[$count](dimmed black)"
+deleted = "[-$count](dimmed #fa7970)"
+untracked = "[?$count](dimmed #cea5fb)"
 
 [git_metrics]
-disabled = false
+format = "([ +$added]($added_style))([ -$deleted]($deleted_style))"
 added_style = "dimmed #7ce38b"
 deleted_style = "dimmed #fa7970"
-format = '([+$added]($added_style) )([-$deleted]($deleted_style) )'
+disabled = false
+
+[python]
+format = " ([● $virtualenv:]($style))[p:$version]($style)"
+style = "dimmed #7ce38b"
+version_format = "${major}.${minor}"
+detect_files = ["pyproject.toml", "uv.lock", "requirements.txt"]
+detect_folders = [".venv"]
+
+[c]
+format = "[ c:$version]($style)"
+style = "dimmed #7ce38b"
+version_format = "${major}.${minor}"
+
+[rlang]
+format = "[ r:$version]($style)"
+style = "dimmed #7ce38b"
+version_format = "${major}.${minor}"
+
+[golang]
+format = "[ g:$version]($style)"
+style = "dimmed #7ce38b"
+version_format = "${major}.${minor}"
+
+[docker_context]
+format = "[ $context]($style)"
+style = "dimmed #cea5fb"
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile", "Dockerfile.broker", "Dockerfile.worker"]
+only_with_files = false
 
 [character]
-success_symbol = '[▸](green)'
-error_symbol = '[▸](red)'
+success_symbol = "[▸](green)"
+error_symbol = "[▸](red)"

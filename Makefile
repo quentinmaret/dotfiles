@@ -55,6 +55,7 @@ packages:
 	brew install uv
 	brew install go
 	brew install grpc
+	brew install gcc
 
 r:
 	@echo "Downloading R packages..."
