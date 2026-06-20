@@ -29,3 +29,21 @@ alias dc='docker compose'
 
 alias localip='ipconfig getifaddr en0'
 alias allips='ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, ""); print }''
+
+# Python
+va() {
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    deactivate
+    return
+  fi
+
+  local dir="$PWD"
+  while [[ "$dir" != "/" ]]; do
+    if [[ -f "$dir/.venv/bin/activate" ]]; then
+      source "$dir/.venv/bin/activate"
+      return
+    fi
+    dir=$(dirname "$dir")
+  done
+  echo "No .venv found in current or parent directories"
+}
