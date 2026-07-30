@@ -31,7 +31,7 @@ brew:
 
 apps:
 	@echo "Downloading applications..."
-	brew install --cask 1password
+	#brew install --cask 1password
 	brew install --cask arc
 	brew install --cask chatgpt
 	brew install --cask codex-app
