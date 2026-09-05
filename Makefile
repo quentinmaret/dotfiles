@@ -34,10 +34,11 @@ apps:
 	#brew install --cask 1password
 	brew install --cask arc
 	brew install --cask chatgpt
-	brew install --cask codex-app
 	brew install --cask claude
 	brew install --cask claude-code
-	brew install --cask logi-options-plus
+	brew install --cask notion
+	brew install --cask notion-calendar
+	brew install --cask openlogi
 	brew install --cask visual-studio-code
 	brew install --cask jetbrains-toolbox
 	brew install --cask warp
